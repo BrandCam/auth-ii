@@ -64,5 +64,8 @@ server.post("/login", (req, res) => {
     });
 });
 // get user list if logged in
-
+server.get("/users", async (req, res) => {
+  const users = await db("users").select("id", "username", "department");
+  res.status(200).json(users);
+});
 module.exports = server;
